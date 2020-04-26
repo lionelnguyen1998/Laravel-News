@@ -105,7 +105,5 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 		});
 });
 
-Route::get('/trangchu',function(){
-        return view('page.trangchu');
-});
+Route::get('trangchu','PageController@trangchu');
 
