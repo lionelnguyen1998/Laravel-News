@@ -9,32 +9,48 @@
                             <small>Add</small>
                         </h1>
                     </div>
+                   @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $err)
+                            {{$err}}<br>
+
+                            @endforeach
+                        </div>
+                        @endif
+
+                        @if(session('Thong Bao'))
+                        <div class="alert alert-success">
+                            {{session('Thong Bao')}}
+                        </div>
+
+                        @endif
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="" method="POST">
+                        <form action="admin/User/add" method="POST">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input class="form-control" name="txtUser" placeholder="Please Enter Username" />
+                                <input class="form-control" name="name" placeholder="Nhap Ten User" />
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="txtPass" placeholder="Please Enter Password" />
+                                <input type="password" class="form-control" name="password" placeholder="Nhap Password" />
                             </div>
                             <div class="form-group">
                                 <label>RePassword</label>
-                                <input type="password" class="form-control" name="txtRePass" placeholder="Please Enter RePassword" />
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter RePassword" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="txtEmail" placeholder="Please Enter Email" />
+                                <input type="email" class="form-control" name="email" placeholder=" Enter Email" />
                             </div>
                             <div class="form-group">
                                 <label>User Level</label>
                                 <label class="radio-inline">
-                                    <input name="rdoLevel" value="1" checked="" type="radio">Admin
+                                    <input name="level" value="1" checked="" type="radio">Admin
                                 </label>
                                 <label class="radio-inline">
-                                    <input name="rdoLevel" value="2" type="radio">Member
+                                    <input name="level" value="0" type="radio">Member
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-default">User Add</button>

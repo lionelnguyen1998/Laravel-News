@@ -68,7 +68,7 @@
                             <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/User/add">List User</a>
+                                    <a href="admin/User/list">List User</a>
                                 </li>
                                 <li>
                                     <a href="admin/User/add">Add User</a>

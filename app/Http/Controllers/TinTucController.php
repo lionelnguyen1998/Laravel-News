@@ -25,6 +25,7 @@ class TinTucController extends Controller
      		[
      			'TieuDe'=>'required|min:3|max:200|unique:tintuc,TieuDe',
      			'TomTat'=>'required|min:10|max:300|unique:tintuc,TomTat',
+                'Hinh'=>'mimes:jpeg,jpg,png',
      			
      			//'TheLoai'=>'required|unique:theloai,Ten',
      			//'LoaiTin'=>'required|unique:loaitin,Ten',
@@ -39,7 +40,7 @@ class TinTucController extends Controller
      			'TomTat.max'=>'Tom tat co do dai 10 den 300 ky tu',
      			'TomTat.required'=>'Ban chua nhap noi dung tom tat',
      			'TomTat.unique'=>'Noi dung tom tat da ton tai',
-     			
+     			'Hinh.mimes'=>'Dinh dang hinh anh sai',
      			
      			//'TheLoai.required'=>'Ban chua chon The Loai',
      			
@@ -59,19 +60,19 @@ class TinTucController extends Controller
 
             $file=$request->file('Hinh');
             //Lay ten hinh ra
-            $duoi=$file->getClientOriginalName();
-            if($duoi!='jpg'&&$duoi!='png'&&$duoi!='jpeg')
-            {
-                return redirect('admin/TinTuc/add')->with('Loi','Ban Chi duoc chon file co duoi la jpg, png, jpeg');
-            }
+            // $duoi=$file->getClientOriginalExtension();
+            // if($duoi!='jpg'&&$duoi!='png'&&$duoi!='jpeg')
+            // {
+            //     return redirect('admin/TinTuc/add')->with('Loi','Ban Chi duoc chon file co duoi la jpg, png, jpeg');
+            // }
             $name=$file->getClientOriginalName();
 
-            $Hinh=str_random(4)."_".$name;
-             while(file_exists("upload/hinhanh/tintuc".$Hinh)){
-                 $Hinh=str_random(4)."_".$name;
-             }
-             //echo $Hinh;
-             //Luu hinh lai
+            $Hinh="Tra".$name;
+             // while(file_exists("upload/hinhanh/tintuc".$Hinh)){
+             //     $Hinh=str_random(4)."_".$name;
+             // }
+             // //echo $Hinh;
+             // //Luu hinh lai
              $file->move("upload/hinhanh/tintuc",$Hinh);
              $tintuc->Hinh=$Hinh;
         }
@@ -86,11 +87,11 @@ class TinTucController extends Controller
 
     	
     }
-     public function getEdit(){
+     public function getEdit($id){
         $tintuc=TinTuc::find($id);
         $loaitin=LoaiTin::all();
         $theloai=TheLoai::all();
-        return view('admin.Tintuc.edit',['tintuc'=>$tintuc,'theloai'=>$theloai,'loaitin'=>$loaitin]);
+        return view('admin.TinTuc.edit',['tintuc'=>$tintuc,'theloai'=>$theloai,'loaitin'=>$loaitin]);
     	
     }
      public function postEdit(){

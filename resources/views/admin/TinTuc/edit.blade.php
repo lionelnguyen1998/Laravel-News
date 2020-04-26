@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Tin Tuc
-                            <small>{{$tintuc->TieuDe}}</small>
+                            
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -34,9 +34,10 @@
                                 <select class="form-control" name="TheLoai" id="TheLoai">
                                     @foreach($theloai as $tl)
                                     <option 
-                                    @if($tintuc->loaitin->theloai->idTheLoai==$tl->id)
+                                    @if($tintuc->loaitin->theloai->id==$tl->id)
                                     {{"selected"}}
                                     @endif
+
                                     value="{{$tl->id}}">{{$tl->Ten}}</option>
                                    @endforeach
                                 </select>
@@ -46,7 +47,7 @@
                                 <select class="form-control" name="LoaiTin" id="LoaiTin">
                                     @foreach($loaitin as $lt)
                                     <option 
-                                    @if($tintuc->loaitin->idLoaiTin==$lt->id)
+                                    @if($tintuc->loaitin->id==$lt->id)
                                     {{"selected"}}
                                     @endif
                                     value="{{$lt->id}}">{{$lt->Ten}}</option>

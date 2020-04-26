@@ -16,29 +16,37 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//Kiem tra cac database da lien ket voi nhau chua
-Route::get('test',function(){
-	$theloai = App\TheLoai::find(1);
-	foreach($theloai->loaitin as $loaitin)
-	{
-		echo $loaitin->Ten."<br>";
-	}
-});
-//Kiem tra giao dien da on dinh chua
-Route::get('TestInterface/index',function(){
-	return view('admin.TheLoai.add');
-});
-//Kiem tar giao dien da on dinh chua
-Route::get('TestInterface/users',function(){
-	return view('admin.User.add');
-});
-//Kiem tar giao dien da on dinh chua
-Route::get('TestInterface/login',function(){
-	return view('admin.login');
-});
 
+//Auth
+//Route::get('/login','LoginController@getlogin');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+//Kiem tra cac database da lien ket voi nhau chua
+// Route::get('test',function(){
+// 	$theloai = App\TheLoai::find(1);
+// 	foreach($theloai->loaitin as $loaitin)
+// 	{
+// 		echo $loaitin->Ten."<br>";
+// 	}
+// });
+// //Kiem tra giao dien da on dinh chua
+// Route::get('TestInterface/index',function(){
+// 	return view('admin.TheLoai.add');
+// });
+// //Kiem tar giao dien da on dinh chua
+// Route::get('TestInterface/users',function(){
+// 	return view('admin.User.add');
+// });
+// //Kiem tar giao dien da on dinh chua
+// Route::get('TestInterface/login',function(){
+// 	return view('admin.login');
+// });
+Route::get('admin/login','UserController@getloginAdmin');
+Route::post('admin/login','UserController@postloginAdmin');
+Route::get('admin/logout','UserController@getLogout');
 //Truy cap den admin
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 	Route::group(['prefix'=>'TheLoai'],function(){
 		//admin/Theloai/list
 		Route::get('list','TheLoaiController@getList');
@@ -81,13 +89,23 @@ Route::group(['prefix'=>'admin'],function(){
 		//admin/Theloai/list
 		Route::get('list','SlideController@getList');
 		Route::get('add','SlideController@getAdd');
-		Route::get('edit','SlideController@getEdit');
+		Route::post('add','SlideController@postAdd');
+		Route::get('edit/{id}','SlideController@getEdit');
+		Route::post('edit/{id}','SlideController@postEdit');
+		Route::get('delete/{id}','SlideController@getDelete');
 		});
 	Route::group(['prefix'=>'User'],function(){
 		//admin/Theloai/list
 		Route::get('list','UserController@getList');
 		Route::get('add','UserController@getAdd');
-		Route::get('edit','UserController@getEdit');
+		Route::post('add','UserController@postAdd');
+		Route::get('edit/{id}','UserController@getEdit');
+		Route::post('edit/{id}','UserController@postEdit');
+		Route::get('delete/{id}','UserController@getDelete');
 		});
+});
+
+Route::get('/trangchu',function(){
+        return view('page.trangchu');
 });
 
