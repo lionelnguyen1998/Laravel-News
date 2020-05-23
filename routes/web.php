@@ -19,9 +19,7 @@ Route::get('/', function () {
 
 //Auth
 //Route::get('/login','LoginController@getlogin');
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 //Kiem tra cac database da lien ket voi nhau chua
 // Route::get('test',function(){
 // 	$theloai = App\TheLoai::find(1);
@@ -106,4 +104,19 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 });
 
 Route::get('trangchu','PageController@trangchu');
+Route::get('contact','PageController@contact');
 
+Route::get('loaitin/{id}/{TenKhongDau}.html','PageController@loaitin');
+Route::get('/tintuc/{id}/{TieuDeKhongDau}.html','PageController@tintuc');
+Route::get('login','PageController@getlogin');
+Route::post('login','PageController@postlogin');
+
+
+
+
+
+
+
+Auth::routes(['vefify'=>true]);
+
+Route::get('/home', 'HomeController@index')->name('home');

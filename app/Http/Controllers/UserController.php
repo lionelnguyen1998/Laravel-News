@@ -75,8 +75,8 @@ class UserController extends Controller
         $user->password=bcrypt($request->password);
     }
     	$user = User::find($id);
-    	$user->name=$request->n
-ame;
+    	$user->name=$request->name;
+
     	$user->level=$request->level;
     	$user->save();
     	return redirect('admin/User/edit/'.$id)->with('Thong Bao','Edit thanh cong');
@@ -103,11 +103,13 @@ ame;
             ]);
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
         {
-            return redirect('admin/TinTuc/list');
+            return redirect('admin/TheLoai/list');
         }
         else
         {
-            return redirect('admin/login')->with('Thong Bao','Login khong thanh cong');
+            return redirect('admin/login')->with('Thong Bao','Login khong thanh cong'); // phan nay khong để thế này được
+            // nếu login lỗi thì để view hiện ra phần validate bị lỗi, debug mới dễ
+
         }
     }
     public function getLogout(){

@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label>Hinh Anh</label>
                                 <p>
-                                    <img src="upload/hinhanh/slide/{{$slide->Hinh}}" width ="300px" heigth="400px">
+                                    <img src="upload/hinhanh/slide/{{$slide->Hinh}}" width ="400px" heigth="200px">
                                 </p>
                                 <input type="file" name="Hinh" class="form-control" />
                             </div>

@@ -48,8 +48,8 @@
                             {{session('Thong Bao')}}
                         @endif
                         <form role="form" action="admin/login" method="POST">
+                            @csrf
                             <fieldset>
-                                <input type="hidden" name="_token" value="csrf_token()">
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>

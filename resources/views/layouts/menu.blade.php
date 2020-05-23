@@ -15,7 +15,7 @@
                     <ul>
                         @foreach($tl->loaitin as $lt)
                     		<li class="list-group-item">
-                    			<a href="admin/TheLoai/list">{{$lt->Ten}}</a>
+                    			<a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html">{{$lt->Ten}}</a>
                     		</li>
                 		@endforeach
                 		
