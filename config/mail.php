@@ -11,11 +11,11 @@ return [
     | messages sent by your application. Alternative mailers may be setup
     | and used as needed; however, this mailer will be used by default.
     |
-    */
+    
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'driver' => env('MAIL_MAILER', 'smtp'),
 
-    /*
+    
     |--------------------------------------------------------------------------
     | Mailer Configurations
     |--------------------------------------------------------------------------
@@ -31,17 +31,18 @@ return [
     | Supported: "smtp", "sendmail", "mailgun", "ses",
     |            "postmark", "log", "array"
     |
-    */
+    
 
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
+            'host' => env('MAIL_HOST', 'mailtrap.io'),
+            'port' => env('MAIL_PORT', 2525),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('MAIL_USERNAME','93059d6f351fb0'),
+            'password' => env('MAIL_PASSWORD','f8becd2c3d02e5'),
             'timeout' => null,
+            'auth_mode' => null,
         ],
 
         'ses' => [
@@ -80,7 +81,7 @@ return [
     | the same address. Here, you may specify a name and address that is
     | used globally for all e-mails that are sent by your application.
     |
-    */
+    
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
@@ -96,7 +97,7 @@ return [
     | theme and component paths here, allowing you to customize the design
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
-    */
+    
 
     'markdown' => [
         'theme' => 'default',
@@ -106,4 +107,15 @@ return [
         ],
     ],
 
+*/
+"driver" => "smtp",
+  "host" => "smtp.mailtrap.io",
+  "port" => 2525,
+  "from" => array(
+      "address" => "from@example.com",
+      "name" => "Example"
+  ),
+  "username" => "93059d6f351fb0",
+  "password" => "f8becd2c3d02e5",
+  "sendmail" => "/usr/sbin/sendmail -bs"
 ];

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,17 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function username()
-    {
-        return 'username';
-    }
-    protected function guard()
-    {
-        return Auth::guard('guard-name');
-    }
-    public function getlogin()
-    {
-        return view('auth.login');
-    }
 }
-

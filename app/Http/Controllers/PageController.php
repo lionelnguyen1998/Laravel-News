@@ -41,13 +41,6 @@ class PageController extends Controller
         $tinlienquan=TinTuc::where('idLoaiTin',$tintuc->idTinTuc); //tin lien quan thi no nam trong cung mot loai tin
         return view('page.tintuc',['tintuc'=>$tintuc,'tinnoibat'=>$tinnoibat,'tinlienquan'=>$tinlienquan]);
     }
-    function getlogin()
-    {
-        return view('page.login');
-    }
-    function postlogin(Request $request)
-    {
-        echo $request->email."<br>";
-    }
+    
     
 }

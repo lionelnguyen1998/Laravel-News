@@ -1,10 +1,10 @@
 <?php
 
+
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
 
 use Closure;
-
+use Illuminate\Support\Facades\Auth;
 class AdminLoginMiddleware
 {
     /**
@@ -18,13 +18,13 @@ class AdminLoginMiddleware
     {
         if(Auth::check())
         {
-        $user=Auth::user();
-        if($user->level==1)
-            return $next($request);
+            $user=Auth::user();
+            if($user->level==1)
+                 return $next($request);
+            else 
+                 return redirect('/login');
+        }
         else
-                return redirect('admin/login') ;
-        }  
-        else 
-                return redirect('admin/login') ;
-}
+        return redirect('/login');
+    }
 }

@@ -86,35 +86,4 @@ class UserController extends Controller
     	$user->delete();
     	return redirect('admin/User/list')->with('Thong Bao','Xoa thanh cong');
     }
-    public function getloginAdmin(){
-        return view('admin.login');
-    }
-    public function postloginAdmin(Request $request){
-        $this->validate($request,
-            [
-                'email'=>'required',
-                'password'=>'required|min:3|max:32',
-            ],
-            [
-                'email.required'=>'Ban chua nhap email',
-                'password'=>'Ban chua nhap password',
-                'password.min'=>'Password co 3 den 32 ky tu',
-                'password.max'=>'Password co 3 den 32 ky tu',
-            ]);
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password]))
-        {
-            return redirect('admin/TheLoai/list');
-        }
-        else
-        {
-            return redirect('admin/login')->with('Thong Bao','Login khong thanh cong'); // phan nay khong để thế này được
-            // nếu login lỗi thì để view hiện ra phần validate bị lỗi, debug mới dễ
-
-        }
-    }
-    public function getLogout(){
-        Auth::logout();
-        return redirect('admin/login');
-    }
-
 }

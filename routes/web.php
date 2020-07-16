@@ -44,7 +44,7 @@ Route::get('admin/login','UserController@getloginAdmin');
 Route::post('admin/login','UserController@postloginAdmin');
 Route::get('admin/logout','UserController@getLogout');
 //Truy cap den admin
-Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
+Route::group(['prefix'=>'admin'],function(){//,'middleware'=>'adminLogin'
 	Route::group(['prefix'=>'TheLoai'],function(){
 		//admin/Theloai/list
 		Route::get('list','TheLoaiController@getList');
@@ -108,15 +108,15 @@ Route::get('contact','PageController@contact');
 
 Route::get('loaitin/{id}/{TenKhongDau}.html','PageController@loaitin');
 Route::get('/tintuc/{id}/{TieuDeKhongDau}.html','PageController@tintuc');
-Route::get('login','PageController@getlogin');
-Route::post('login','PageController@postlogin');
-
-
-
-
-
-
 
 Auth::routes(['vefify'=>true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');//->middleware('verified');
+
+
+
+//Laravel
+//Validation
+/*
+
+*/

@@ -26,6 +26,10 @@ class AddAttributeLevelIntoUsersTable extends Migration
      */
     public function down()
     {
-        $table->dropColumn('level');
+         Schema::table('users', function (Blueprint $table) {
+           $table->dropColumn('level');
+            //
+        });
+        
     }
 }
